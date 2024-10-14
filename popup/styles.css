@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&display=swap');
+
+:root {
+  --primary: rgba(1, 138, 188, 1);
+  --secondary: rgba(180, 68, 127, 1);
+  --third: rgba(162, 85, 156, 1);
+  --blue-2: rgba(101, 116, 190, 1);
+  --font-family-kameron: 'Kameron', sans-serif;
+}
+
+* {
+  font-family: var(--font-family-kameron);
+}
+
+.header {
+  display: flex;
+}
+
+.logo {
+  width: 65px;
+  height: 65px;
+}
+
+.header h2 {
+  margin: 0;
+  padding-top: 15px;
+  color: var(--primary);
+  font-size: 36px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.icon-settings {
+  padding: 10px;
+  margin-left: auto;
+  margin-right: 0;
+  cursor: pointer;
+}
+
+.row {
+  margin: 20px 0;
+  margin-left: 10px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.row span {
+  margin-left: 10px;
+}
+
+.slider {
+  display: flex;
+  width: 370px;
+  height: 50px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: var(--primary);
+  border-radius: 15px;
+}
+
+.slider-item {
+  width: 50%;
+  align-content: center;
+  padding: 10px;
+  font-size: 24px;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.slider-active {
+  color: rgba(0, 0, 0, 1);
+  background-color: rgba(255, 255, 255, 1);
+}

@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Extension de score pour une page",
+    "version": "1.0",
+    "description": "Affiche un score pour une page et ajoute une option au menu du clic droit",
+    "permissions": [
+        "tabs", 
+        "activeTab", 
+        "scripting", 
+        "contextMenus"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup/index.html",
+        "default_icon": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+        }
+    },
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    }
+}
