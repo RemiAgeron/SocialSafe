@@ -12,17 +12,18 @@
     <img src="images/logo.jpg" class="logo" alt="logo plugin" />
     <h2>SocialSafe</h2>
     <div class="header-right">
+      <span>Admin</span>
       <img src="images/settings.svg" class="icon-settings" alt="icon settings" />
     </div>
   </div>
   <div class="slider">
     <div class="slider-item slider-active">Actions</div>
-    <div class="slider-item" id="navStats">Statistiques</div>
+    <div class="slider-item" id="navStatsAdmin">Statistiques</div>
   </div>
   <div class="content">
-    <div class="row btn" id="actionAdmin">
+    <div class="row btn" id="actionQuit">
       <img src="images/user.svg" alt="icon user" />
-      <span>Mode administrateur</span>
+      <span>Mode utilisateur</span>
     </div>
     <div id="adminLogin" hidden>
       <form id="loginForm">
@@ -36,9 +37,17 @@
       <img src="images/search.svg" alt="icon search" />
       <span>Rechercher un utilisateur</span>
     </div>
+    <div class="row btn" id="actionFilter">
+      <img src="images/filter.svg" alt="icon filter" />
+      <span>Ouvrir le journal de filtrage des sites</span>
+    </div>
     <div class="row btn" id="actionReport">
       <img src="images/thumbs-down.svg" alt="icon thumb down" />
       <span>Signaler un utilisateur</span>
+    </div>
+    <div class="row btn" id="actionScreenTime">
+      <img src="images/clock.svg" alt="icon clock" />
+      <span>Gérer les temps d'écran</span>
     </div>
   </div>
   <script src="script.js"></script>

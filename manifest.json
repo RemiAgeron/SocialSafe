@@ -4,6 +4,7 @@
     "version": "1.0",
     "description": "Affiche un score pour une page et ajoute une option au menu du clic droit",
     "permissions": [
+        "storage",
         "tabs", 
         "activeTab", 
         "scripting", 

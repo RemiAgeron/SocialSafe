@@ -48,6 +48,38 @@
   margin-inline: 20px;
 }
 
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: var(--primary);
+}
+
+#loginForm * {
+  color: white;
+  font-size: 16px;
+}
+
+#loginForm input[type="password"] {
+  color: initial;
+  border-color: white;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+#loginForm input[type="submit"] {
+  background-color: transparent;
+  box-shadow: none;
+  border-color: white;
+  border-radius: 5px;
+}
+
+#errorMessage {
+  color: white;
+  text-decoration-color: var(--secondary);
+}
+
 .row {
   margin: 20px 0;
   font-size: 18px;
@@ -133,6 +165,14 @@
 
 .mb-0 {
   margin-bottom: 0;
+}
+
+.mb-5 {
+  margin-bottom: 5px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
 }
 
 .space-between {
