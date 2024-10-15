@@ -6,9 +6,7 @@ async function hashPassword(password) {
 }
 
 async function storePassword(hashedPassword) {
-  chrome.storage.local.set({ adminPassword: hashedPassword }, () => {
-    document.getElementById("adminLogin").hidden = true;
-  });
+  chrome.storage.local.set({ adminPassword: hashedPassword }, Function);
 }
 
 async function verifyPassword(password) {
@@ -18,7 +16,8 @@ async function verifyPassword(password) {
       if (result.adminPassword) {
         resolve(result.adminPassword === hashedPassword);
       } else {
-        resolve(storePassword(hashedPassword));
+        storePassword(hashedPassword);
+        resolve(true);
       }
     });
   });
@@ -57,6 +56,30 @@ document.getElementById("actionAdmin")?.addEventListener("click", async () => {
   });
   const adminLogin = document.getElementById("adminLogin");
   if (adminLogin !== undefined) adminLogin.hidden = !adminLogin.hidden;
+})
+
+function showProtection() {
+  const statusActive = document.getElementById("statusActive");
+  const statusUnactive = document.getElementById("statusUnactive");
+  chrome.storage.local.get(["protectionActive"], (result) => {
+    if (result.protectionActive || false === true) {
+      statusActive.hidden = false;
+      statusUnactive.hidden = true;
+    } else {
+      statusActive.hidden = true;
+      statusUnactive.hidden = false;
+    }
+  });
+}
+
+if (document.getElementById("protection")) showProtection();
+
+document.getElementById("actionActive")?.addEventListener("click", () => {
+  chrome.storage.local.set({ protectionActive: true }, () => showProtection());
+})
+
+document.getElementById("actionUnactive")?.addEventListener("click", () => {
+  chrome.storage.local.set({ protectionActive: false }, () => showProtection());
 })
 
 document.getElementById("actionQuit")?.addEventListener("click", () => {

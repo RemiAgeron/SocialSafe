@@ -150,6 +150,20 @@
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+.protection {
+  display: grid;
+  justify-items: center;
+}
+
+.protection span {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.protection img {
+  cursor: pointer;
+}
+
 .btn {
   border-radius: 6px;
   cursor: pointer;
