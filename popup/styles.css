@@ -30,16 +30,26 @@
   text-align: center;
 }
 
-.icon-settings {
-  padding: 10px;
+.header-right {
+  font-size: 18px;
+  color: var(--third);
   margin-left: auto;
   margin-right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.icon-settings {
+  padding: 10px;
   cursor: pointer;
+}
+
+.content {
+  margin-inline: 20px;
 }
 
 .row {
   margin: 20px 0;
-  margin-left: 10px;
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -47,6 +57,35 @@
 
 .row span {
   margin-left: 10px;
+}
+
+.row b {
+  color: var(--primary);
+}
+
+.screen-time {
+  font-size: 15px;
+}
+
+.screen-time li {
+  margin-top: 5px;
+}
+
+.screen-time span {
+  color: var(--primary);
+}
+
+.sort {
+  font-size: 18px;
+  margin: 5px;
+  margin-bottom: 0;
+  padding: 5px;
+  border-radius: 10px;
+  border-color: lightgray;
+}
+
+.sort img {
+  margin-right: 5px;
 }
 
 .slider {
@@ -73,4 +112,30 @@
 .slider-active {
   color: rgba(0, 0, 0, 1);
   background-color: rgba(255, 255, 255, 1);
+}
+
+.slider-item:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
 }

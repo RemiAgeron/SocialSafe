@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Exported Figma Design</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="header">
+    <img src="images/logo.jpg" class="logo" alt="logo plugin" />
+    <h2>SocialSafe</h2>
+    <div class="header-right">
+      <span hidden id="admin">Admin</span>
+      <img src="images/settings.svg" class="icon-settings" alt="icon settings" />
+    </div>
+  </div>
+  <div class="slider">
+    <div class="slider-item" id="navActions">Actions</div>
+    <div class="slider-item slider-active">Statistiques</div>
+  </div>
+  <div class="content">
+    <select id="period" class="sort">
+      <option value="today">Aujourd'hui</option>
+      <option value="week">Semaine</option>
+      <option value="month">Mois</option>
+      <option value="year">Année</option>
+    </select>
+    <div class="row space-between">Publications signalées<b>2</b></div>
+    <div class="row space-between">Utilisateurs signalés<b>0</b></div>
+    <div class="row space-between">Sites bloqués<b>1</b></div>
+    <div class="row space-between">Publicités malveillantes bloquées<b>13</b></div>
+    <div class="row space-between mb-0">Temps d'écran total<b>2h14</b></div>
+    <ul class="screen-time mt-0">
+      <li>
+        <div class="space-between">Youtube<span>1h</span></div>
+      </li>
+      <li>
+        <div class="space-between">WhatsApp<span>34min</span></div>
+      </li>
+      <li>
+        <div class="space-between">TikTok<span>24min</span></div>
+      </li>
+      <li>
+        <div class="space-between">Facebook<span>16min</span></div>
+      </li>
+    </ul>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
