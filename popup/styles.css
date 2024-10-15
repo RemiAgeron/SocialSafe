@@ -193,3 +193,75 @@
   display: flex;
   justify-content: space-between;
 }
+
+.report-contener {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  justify-content: center; 
+  gap: 15px;             
+  width: 370px;
+  padding: 20px;
+  margin: 10px 0;
+  background-color: var(--primary);
+  border-radius: 15px;
+}
+
+.report-contener span {
+  color: white;    
+  font-size: 24px;    
+  text-align: center;
+}
+
+.report-contener input {
+  width: 100%;        
+  padding: 5px;   
+  color: black;    
+  border-radius: 5px;   
+  border: 1px solid #ccc; 
+}
+
+.report-contener input:hover, 
+.report-contener input:focus {
+  background-color: white;
+}
+
+.report-contener button {
+  padding: 10px 20px;
+  border: 2px solid white;
+  background-color: var(--primary);
+  color: white;
+}
+
+#report-user-add {
+  background-color: var(--third);
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;  
+  justify-content: center; 
+  gap: 10px; 
+  opacity: 0;                /* Commence avec une opacité de 0 */
+  transition: opacity 0.5s; /* Durée de la transition pour l'opacité */
+  visibility: hidden;            
+}
+
+#report-user-add img {
+  height: 20px;           
+}
+
+#report-user-add span {
+  line-height: 20px;      
+}
+
+#return-button {
+  margin-top: 30px;
+  background-color: var(--primary);
+  padding: 5px;
+  width: 100%;
+  font-size: 20px;
+  color: white;
+  border: none
+}

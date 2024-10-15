@@ -91,5 +91,39 @@ document.getElementById("actionSearch")?.addEventListener("click", () => {
 })
 
 document.getElementById("actionReport")?.addEventListener("click", () => {
-  alert("report");
+  window.location.href = 'reportUser.html';
+})
+
+document.getElementById("button-report")?.addEventListener("click", () => {
+  const inputField = document.getElementById("report-user-input");
+  const reportUserAdd = document.getElementById("report-user-add");
+
+  if (inputField.value.trim() === "") {
+    inputField.style.border = "2px solid red";
+  } else {
+    const newUser = inputField.value.trim();
+
+    let reportedUsers = JSON.parse(localStorage.getItem("reportedUsers")) || [];
+
+    reportedUsers.push(newUser);
+
+    localStorage.setItem("reportedUsers", JSON.stringify(reportedUsers));
+
+    inputField.style.border = "";
+    inputField.value = "";
+
+    reportUserAdd.style.visibility = "visible";
+        reportUserAdd.style.opacity = "1";
+
+    setTimeout(() => {
+      reportUserAdd.style.opacity = "0"; 
+      setTimeout(() => {
+        reportUserAdd.style.visibility = "hidden"; 
+      }, 500); 
+    }, 5000);
+  }
+})
+
+document.getElementById("return-button")?.addEventListener("click", () => {
+  history.back();
 })
