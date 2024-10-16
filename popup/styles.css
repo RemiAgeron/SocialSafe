@@ -8,6 +8,10 @@
   --font-family-kameron: 'Kameron', sans-serif;
 }
 
+body {
+  overflow: hidden;
+}
+
 * {
   font-family: var(--font-family-kameron);
 }
@@ -24,20 +28,37 @@
 
 .header h2 {
   margin: 0;
-  padding-top: 15px;
+  padding-top: 5px;
   color: var(--primary);
   font-size: 36px;
   font-weight: normal;
   text-align: center;
+  align-content: center;
+}
+
+.header h3 {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 20px;
+  font-weight: 500;
+  padding-top: 5px;
+  text-align: center;
+  align-content: center;
+  width: inherit;
 }
 
 .header-right {
   font-size: 18px;
-  color: var(--third);
+  color: var(--secondary);
   margin-left: auto;
   margin-right: 0;
   display: flex;
   align-items: center;
+}
+
+.favicon {
+  width: 24px;
+  height: 24px;
 }
 
 .btnIcon {
@@ -46,7 +67,9 @@
 }
 
 .content {
-  margin-inline: 20px;
+  padding: 0 20px;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 #loginForm {
@@ -79,6 +102,33 @@
 #errorMessage {
   color: white;
   text-decoration-color: var(--secondary);
+}
+
+.h-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.h-form * {
+  font-size: 16px;
+}
+
+.h-form input[type="text"], input[type="number"], input[type="url"] {
+  width: 200px;
+  color: initial;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+.h-form input[type="submit"] {
+  background-color: var(--third);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.h-form input[type="submit"]:hover {
+  background-color: lightgray;
 }
 
 .row {
@@ -182,12 +232,29 @@
   margin-bottom: 0;
 }
 
+.mr-5 {
+  margin-right: 5px;
+}
+
+.my-5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .mb-5 {
   margin-bottom: 5px;
 }
 
 .mb-10 {
   margin-bottom: 10px;
+}
+
+.w-max {
+  width: 784px;
+}
+
+.d-flex {
+  display: flex;
 }
 
 .space-between {

@@ -86,6 +86,14 @@ document.getElementById("actionQuit")?.addEventListener("click", () => {
   window.location.href = 'actions.html';
 })
 
+document.getElementById("actionScreenTime")?.addEventListener("click", () => {
+  window.location.href = 'screen-time-admin.html';
+})
+
+document.getElementById("actionFilter")?.addEventListener("click", () => {
+  window.location.href = 'filter-admin.html';
+})
+
 document.getElementById("actionSearch")?.addEventListener("click", () => {
   alert("search");
 })
@@ -145,4 +153,119 @@ document.getElementById("toggle-clear")?.addEventListener("click", () => {
 document.getElementById("toggle-dark")?.addEventListener("click", () => {
   clearMode.hidden = false;
   darkMode.hidden = true;
+})
+
+function showScreenTimeContent() {
+  let screenTimeContent = document.getElementById("screen-time-content");
+  screenTimeContent.innerHTML = "";
+  chrome.storage.local.get(["screenTimeLimit"], (result) => {
+    const list = result.screenTimeLimit ? Array(...result.screenTimeLimit) : [];
+    list.forEach((webapp) => {
+      const mainDiv = document.createElement("div");
+      mainDiv.classList.add("row", "space-between");
+      screenTimeContent.appendChild(mainDiv);
+
+      const titleDiv = document.createElement("div");
+      titleDiv.classList.add("d-flex");
+
+      const valueSpan = document.createElement("span");
+      const hours = Math.floor(webapp.timeLimit / 60);
+      const minutes = webapp.timeLimit % 60;
+      valueSpan.textContent = `${hours ? `${hours}h` : ''}${minutes ? `${minutes}min` : ''}`;
+
+      mainDiv.append(titleDiv, valueSpan);
+
+      const img = document.createElement("img");
+      img.classList.add("favicon");
+      img.src = `${webapp.url}/favicon.ico`;
+      img.alt = "website icon";
+
+      const titleSpan = document.createElement("span");
+      titleSpan.textContent = webapp.name;
+
+      titleDiv.append(img, titleSpan);
+    })
+
+    Array.from(document.getElementsByClassName("favicon")).forEach((element) => {
+      element.addEventListener("error", () => {
+        element.src = "images/website.svg";
+      })
+    })
+  });
+}
+
+const screenTimeContent = document.getElementById("screen-time-content");
+if (screenTimeContent) {
+  showScreenTimeContent();
+}
+
+document.getElementById("screenTimeForm")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  chrome.storage.local.get(["screenTimeLimit"], (result) => {
+    const nameElement = document.getElementById('name');
+    const urlElement = document.getElementById('url');
+    const timeLimitElement = document.getElementById('timeLimit');
+    const data = result.screenTimeLimit ? Array(...result.screenTimeLimit) : [];
+    data.push({ name: nameElement.value, url: urlElement.value, timeLimit: timeLimitElement.value });
+    chrome.storage.local.set({screenTimeLimit: data}, function() {
+      nameElement.value = urlElement.value = timeLimitElement.value = '';
+      showScreenTimeContent();
+    });
+  });
+})
+
+function showFilterContent() {
+  let filterContent = document.getElementById("filter-content");
+  filterContent.innerHTML = "";
+  chrome.storage.local.get(["filter"], (result) => {
+    const list = result.filter ? Array(...result.filter) : [];
+    list.forEach((webapp) => {
+      const mainDiv = document.createElement("div");
+      mainDiv.classList.add("row", "space-between");
+      filterContent.appendChild(mainDiv);
+
+      const titleDiv = document.createElement("div");
+      titleDiv.classList.add("d-flex");
+
+      const valueSpan = document.createElement("span");
+      valueSpan.textContent = webapp.url;
+
+      mainDiv.append(titleDiv, valueSpan);
+
+      const img = document.createElement("img");
+      img.classList.add("favicon");
+      img.src = `${webapp.url}/favicon.ico`;
+      img.alt = "website icon";
+
+      const titleSpan = document.createElement("span");
+      titleSpan.textContent = webapp.name;
+
+      titleDiv.append(img, titleSpan);
+    })
+
+    Array.from(document.getElementsByClassName("favicon")).forEach((element) => {
+      element.addEventListener("error", () => {
+        element.src = "images/website.svg";
+      })
+    })
+  });
+}
+
+const filterContent = document.getElementById("filter-content");
+if (filterContent) {
+  showFilterContent();
+}
+
+document.getElementById("filterForm")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  chrome.storage.local.get(["filter"], (result) => {
+    const nameElement = document.getElementById('name');
+    const urlElement = document.getElementById('url');
+    const data = result.filter ? Array(...result.filter) : [];
+    data.push({ name: nameElement.value, url: urlElement.value });
+    chrome.storage.local.set({filter: data}, function() {
+      nameElement.value = urlElement.value = '';
+      showFilterContent();
+    });
+  });
 })

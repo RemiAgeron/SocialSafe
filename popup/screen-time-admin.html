@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Exported Figma Design</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="header w-max">
+    <img src="images/logo.jpg" class="logo" alt="logo plugin" />
+    <h2>SocialSafe</h2>
+    <h3>Gestion du temps d'écran</h3>
+    <div class="header-right">
+      <span>Admin</span>
+      <img src="images/settings.svg" id="settings" class="btnIcon" alt="icon settings" />
+      <img src="images/arrow-left.svg" id="return" class="btnIcon" alt="icon arrow left" />
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="content h-max-content overflow">
+    <form id="screenTimeForm" class="h-form my-5">
+      <input id="name" type="text" maxlength="100" placeholder="Nom du site" required class="mr-5"/>
+      <input id="url" type="url" maxlength="100" placeholder="Lien du site" required class="mr-5"/>
+      <input id="timeLimit" type="number" min="1" max="420" step="1" placeholder="Nombre de minutes" required class="mr-5"/>
+      <input type="submit" value="Ajouter"/>
+    </form>
+    <div id="screen-time-content">
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
