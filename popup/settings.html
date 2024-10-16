@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Exported Figma Design</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="header">
+    <img src="images/logo.jpg" class="logo" alt="logo plugin" />
+    <h2>SocialSafe</h2>
+    <div class="header-right">
+      <span id="admin">Paramètres</span>
+      <img src="images/arrow-left.svg" id="return" class="btnIcon" alt="icon arrow left" />
+    </div>
+  </div>
+  <div class="content">
+    <div id="toggle-clear" style="cursor: pointer;">
+      <div class="row space-between">Mode clair<img src="images/toggle-clear.svg" alt="icon toggle clear" /></div>
+    </div>
+    <div hidden id="toggle-dark" style="cursor: pointer;">
+      <div class="row space-between">Mode sombre<img src="images/toggle-dark.svg" alt="icon toggle dark" /></div>
+    </div>
+    <div class="row space-between">
+      Langue
+      <select id="period" class="sort">
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

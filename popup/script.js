@@ -127,3 +127,22 @@ document.getElementById("button-report")?.addEventListener("click", () => {
 document.getElementById("return-button")?.addEventListener("click", () => {
   history.back();
 })
+
+document.getElementById("settings")?.addEventListener("click", () => {
+  window.location.href = 'settings.html';
+})
+
+document.getElementById("return")?.addEventListener("click", () => {
+  history.back();
+})
+
+const clearMode = document.getElementById("toggle-clear");
+const darkMode = document.getElementById("toggle-dark");
+document.getElementById("toggle-clear")?.addEventListener("click", () => {
+  clearMode.hidden = true;
+  darkMode.hidden = false;
+})
+document.getElementById("toggle-dark")?.addEventListener("click", () => {
+  clearMode.hidden = false;
+  darkMode.hidden = true;
+})

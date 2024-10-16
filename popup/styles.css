@@ -14,6 +14,7 @@
 
 .header {
   display: flex;
+  min-width: 390px;
 }
 
 .logo {
@@ -39,7 +40,7 @@
   align-items: center;
 }
 
-.icon-settings {
+.btnIcon {
   padding: 10px;
   cursor: pointer;
 }
