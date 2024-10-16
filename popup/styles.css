@@ -264,10 +264,10 @@ body {
 
 .report-contener {
   display: flex;
-  flex-direction: column; 
-  align-items: center;    
-  justify-content: center; 
-  gap: 15px;             
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
   width: 370px;
   padding: 20px;
   margin: 10px 0;
@@ -276,20 +276,20 @@ body {
 }
 
 .report-contener span {
-  color: white;    
-  font-size: 24px;    
+  color: white;
+  font-size: 24px;
   text-align: center;
 }
 
 .report-contener input {
-  width: 100%;        
-  padding: 5px;   
-  color: black;    
-  border-radius: 5px;   
-  border: 1px solid #ccc; 
+  width: 100%;
+  padding: 5px;
+  color: black;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-.report-contener input:hover, 
+.report-contener input:hover,
 .report-contener input:focus {
   background-color: white;
 }
@@ -304,24 +304,27 @@ body {
 #report-user-add {
   background-color: var(--third);
   border-radius: 5px;
-  padding: 10px;
+  padding: 0;
   color: white;
   font-size: 20px;
   display: flex;
-  align-items: center;  
-  justify-content: center; 
-  gap: 10px; 
-  opacity: 0;                /* Commence avec une opacité de 0 */
-  transition: opacity 0.5s; /* Durée de la transition pour l'opacité */
-  visibility: hidden;            
+  /* Toujours présent dans le flux, mais masqué par visibilité */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease, height 0.5s ease;
 }
 
 #report-user-add img {
-  height: 20px;           
+  height: 20px;
 }
 
 #report-user-add span {
-  line-height: 20px;      
+  line-height: 20px;
 }
 
 #return-button {
@@ -332,4 +335,87 @@ body {
   font-size: 20px;
   color: white;
   border: none
+}
+
+.search-user-contener {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 5px;
+}
+
+.search-user-contener span.title {
+  color: var(--secondary);
+  font-size: 18px;
+}
+
+#search-user-report {
+  width: 95%;
+  border: 2px solid var(--primary);
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+
+/* Chaque ligne de résultat organisée en 3 colonnes */
+.result-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  /* 3 colonnes : 1fr pour l'utilisateur, auto pour le bouton, auto pour le nombre */
+  gap: 10px;
+  /* Espace entre les colonnes */
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: #f9f9f9;
+}
+
+#search-results {
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+  height: 320px;
+  display: none;
+}
+
+/* Style pour la colonne du nom d'utilisateur (avec ellipses si trop long) */
+.user-label {
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Style pour le bouton "Signaler" */
+.report-button {
+  border: none;
+  color: var(--secondary);
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.report-button:hover {
+  background-color: var(--secondary);
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+
+}
+
+/* Style pour le nombre de signalements (max 4 chiffres) */
+.report-count {
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: var(--secondary);
+  color: white;
+  width: 50px;
+  /* Espace suffisant pour afficher 4 chiffres */
+  text-align: center;
+  /* Centrer le texte */
+  padding: 5px;
 }

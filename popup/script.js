@@ -95,7 +95,7 @@ document.getElementById("actionFilter")?.addEventListener("click", () => {
 })
 
 document.getElementById("actionSearch")?.addEventListener("click", () => {
-  alert("search");
+  window.location.href = 'searchUser.html';
 })
 
 document.getElementById("actionReport")?.addEventListener("click", () => {
@@ -104,33 +104,115 @@ document.getElementById("actionReport")?.addEventListener("click", () => {
 
 document.getElementById("button-report")?.addEventListener("click", () => {
   const inputField = document.getElementById("report-user-input");
-  const reportUserAdd = document.getElementById("report-user-add");
+
 
   if (inputField.value.trim() === "") {
     inputField.style.border = "2px solid red";
   } else {
     const newUser = inputField.value.trim();
 
-    let reportedUsers = JSON.parse(localStorage.getItem("reportedUsers")) || [];
-
-    reportedUsers.push(newUser);
-
-    localStorage.setItem("reportedUsers", JSON.stringify(reportedUsers));
+    addReportedUser(newUser);
 
     inputField.style.border = "";
     inputField.value = "";
-
-    reportUserAdd.style.visibility = "visible";
-        reportUserAdd.style.opacity = "1";
-
-    setTimeout(() => {
-      reportUserAdd.style.opacity = "0"; 
-      setTimeout(() => {
-        reportUserAdd.style.visibility = "hidden"; 
-      }, 500); 
-    }, 5000);
   }
 })
+
+function addReportedUser(user) {
+  const reportUserAdd = document.getElementById("report-user-add");
+  // Récupérer la liste des utilisateurs signalés dans le localStorage
+  let reportedUsers = JSON.parse(localStorage.getItem("reportedUsers")) || [];
+
+  // Ajouter l'utilisateur à la liste des signalés
+  reportedUsers.push(user);
+
+  // Mettre à jour le localStorage
+  localStorage.setItem("reportedUsers", JSON.stringify(reportedUsers));
+
+  reportUserAdd.style.padding = "10px";
+  reportUserAdd.style.opacity = "1";
+  reportUserAdd.style.height = "auto";
+
+  setTimeout(() => {
+    reportUserAdd.style.height = "0";
+    reportUserAdd.style.opacity = "0";
+    setTimeout(() => {
+      reportUserAdd.style.padding = "0";
+    }, 500);
+  }, 3000);
+}
+
+document.getElementById("search-user-report")?.addEventListener("input", () => {
+  let typingTimer;
+  clearTimeout(typingTimer); // Réinitialise le timer à chaque frappe
+  typingTimer = setTimeout(searchUsers, 500); // Lance la recherche après 1 seconde d'inactivité
+});
+
+function searchUsers() {
+  const searchTerm = document.getElementById("search-user-report")?.value.toLowerCase();
+  const searchResultsContainer = document.getElementById("search-results");
+
+  // Vider le conteneur des résultats avant d'afficher les nouveaux
+  searchResultsContainer.innerHTML = '';
+  searchResultsContainer.style.display = "none";
+
+  if (searchTerm != '') {
+    // Vérifier si le localStorage contient des utilisateurs signalés
+    const reportedUsers = JSON.parse(localStorage.getItem("reportedUsers")) || [];
+
+    // Filtrer les utilisateurs contenant les caractères du terme de recherche
+    const filteredUsers = reportedUsers.filter(user => user.toLowerCase().includes(searchTerm)).slice(0, 10);
+
+    // Compter le nombre d'occurrences pour chaque utilisateur filtré
+    const userCounts = filteredUsers.reduce((acc, user) => {
+      acc[user] = reportedUsers.filter(u => u === user).length; // Compter le nombre de fois que l'utilisateur apparaît
+      return acc;
+    }, {});
+
+    // Récupérer les utilisateurs uniques
+    const uniqueUsers = Object.keys(userCounts);
+
+    // Afficher les résultats si des utilisateurs correspondent
+    if (uniqueUsers.length === 0) {
+      searchResultsContainer.innerHTML = '<p>Aucun résultat trouvé.</p>';
+    } else {
+      uniqueUsers.forEach(user => {
+        // Créer une div contenant une puce, un bouton et le nombre de signalements
+        const userElement = document.createElement("div");
+        userElement.className = "result-item"; // Ajouter la classe CSS
+
+        // Créer la puce avec le nom d'utilisateur
+        const userLabel = document.createElement("span");
+        userLabel.textContent = user;
+        userLabel.className = "user-label";
+
+        // Créer le bouton "Signaler"
+        const reportButton = document.createElement("button");
+        reportButton.textContent = "Signaler";
+        reportButton.className = "report-button";
+
+        // Créer un élément pour afficher le nombre de signalements
+        const reportCount = document.createElement("span");
+        reportCount.textContent = userCounts[user];
+        reportCount.className = "report-count";
+
+        // Ajouter les éléments à la ligne (div)
+        userElement.appendChild(userLabel);
+        userElement.appendChild(reportButton);
+        userElement.appendChild(reportCount);
+
+        // Ajouter la ligne complète au conteneur des résultats
+        searchResultsContainer.appendChild(userElement);
+        searchResultsContainer.style.display = "initial";
+
+        // Ajouter l'événement de clic au bouton "Signaler"
+        reportButton.addEventListener("click", () => {
+          addReportedUser(user);
+        });
+      });
+    }
+  }
+}
 
 document.getElementById("return-button")?.addEventListener("click", () => {
   history.back();
