@@ -1,3 +1,5 @@
+const regex = /(https?:\/\/w{3}\.)?(https?:\/\/)?([^\/\?]+)/;
+
 async function hashPassword(password) {
   const msgUint8 = new TextEncoder().encode(password);
   const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
@@ -286,9 +288,10 @@ document.getElementById("screenTimeForm")?.addEventListener("submit", (e) => {
   chrome.storage.local.get(["screenTimeLimit"], (result) => {
     const nameElement = document.getElementById('name');
     const urlElement = document.getElementById('url');
+    const url = urlElement.value.match(regex)[0];
     const timeLimitElement = document.getElementById('timeLimit');
     const data = result.screenTimeLimit ? Array(...result.screenTimeLimit) : [];
-    data.push({ name: nameElement.value, url: urlElement.value, timeLimit: timeLimitElement.value });
+    data.push({ name: nameElement.value, url: url, timeLimit: timeLimitElement.value });
     chrome.storage.local.set({screenTimeLimit: data}, function() {
       nameElement.value = urlElement.value = timeLimitElement.value = '';
       showScreenTimeContent();
@@ -337,8 +340,6 @@ const filterContent = document.getElementById("filter-content");
 if (filterContent) {
   showFilterContent();
 }
-
-const regex = /(https?:\/\/w{3}\.)?(https?:\/\/)?([^\/\?]+)/;
 
 document.getElementById("filterForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
