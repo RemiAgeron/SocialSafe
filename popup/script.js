@@ -61,8 +61,8 @@ document.getElementById("actionAdmin")?.addEventListener("click", async () => {
 function showProtection() {
   const statusActive = document.getElementById("statusActive");
   const statusUnactive = document.getElementById("statusUnactive");
-  chrome.storage.local.get(["protectionActive"], (result) => {
-    if (result.protectionActive || false === true) {
+  chrome.storage.local.get(["protection"], (result) => {
+    if (result.protection || false === true) {
       statusActive.hidden = false;
       statusUnactive.hidden = true;
     } else {
@@ -75,11 +75,11 @@ function showProtection() {
 if (document.getElementById("protection")) showProtection();
 
 document.getElementById("actionActive")?.addEventListener("click", () => {
-  chrome.storage.local.set({ protectionActive: true }, () => showProtection());
+  chrome.storage.local.set({ protection: true }, () => showProtection());
 })
 
 document.getElementById("actionUnactive")?.addEventListener("click", () => {
-  chrome.storage.local.set({ protectionActive: false }, () => showProtection());
+  chrome.storage.local.set({ protection: false }, () => showProtection());
 })
 
 document.getElementById("actionQuit")?.addEventListener("click", () => {
@@ -338,13 +338,16 @@ if (filterContent) {
   showFilterContent();
 }
 
+const regex = /(https?:\/\/w{3}\.)?(https?:\/\/)?([^\/\?]+)/;
+
 document.getElementById("filterForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
   chrome.storage.local.get(["filter"], (result) => {
     const nameElement = document.getElementById('name');
     const urlElement = document.getElementById('url');
+    const url = urlElement.value.match(regex)[0];
     const data = result.filter ? Array(...result.filter) : [];
-    data.push({ name: nameElement.value, url: urlElement.value });
+    data.push({ name: nameElement.value, url: url });
     chrome.storage.local.set({filter: data}, function() {
       nameElement.value = urlElement.value = '';
       showFilterContent();

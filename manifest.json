@@ -2,13 +2,17 @@
     "manifest_version": 3,
     "name": "Extension de score pour une page",
     "version": "1.0",
-    "description": "Affiche un score pour une page et ajoute une option au menu du clic droit",
+    "description": "Filtre pour les sites indésirables ou malveillants",
     "permissions": [
         "storage",
-        "tabs", 
-        "activeTab", 
-        "scripting", 
-        "contextMenus"
+        "tabs",
+        "activeTab",
+        "scripting",
+        "declarativeNetRequest",
+        "declarativeNetRequestWithHostAccess"
+    ],
+    "host_permissions": [
+        "*://*/*"
     ],
     "background": {
         "service_worker": "background.js"
